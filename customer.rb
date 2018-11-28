@@ -7,6 +7,13 @@ class Customer
     @wallet = wallet
   end
 
+  def reduce_wallet(debit)
+    @wallet -= debit
+      # return wallet
+  end
 
+  def buy_drink(desired_drink)
+    reduce_wallet(desired_drink.price)
+  end
 
 end
