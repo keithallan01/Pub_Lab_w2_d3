@@ -7,9 +7,10 @@ class PubTest < Minitest::Test
 
 
   def setup
-    @customer1 = Customer.new("Tom", 50)
-    @customer2 = Customer.new("Keith",20)
-    @customer3 = Customer.new("Cricket", 1)
+    @customer1 = Customer.new("Tom", 50, 31)
+    @customer2 = Customer.new("Keith",20, 30)
+    @customer3 = Customer.new("Cricket", 1, 45)
+    @customer4 = Customer.new("Juan", 25, 16)
     @customers =[@customer1, @customer2, @customer3]
 
     @drink1 = Drink.new("Tennents Lager", 2)
@@ -74,4 +75,16 @@ class PubTest < Minitest::Test
     assert_equal(1,@customer3.wallet)
   end
 
+  def test_checks_id__true
+    assert_equal(true, @pub.check_id(@customer2))
+  end
+
+  def test_checks_id__false
+    assert_equal(false, @pub.check_id(@customer4))
+  end
+
+  def test_sell_underager_drink
+    @pub.sell_drink(@customer4, @drink1)
+    assert_equal(25, @customer4.wallet)
+  end
 end

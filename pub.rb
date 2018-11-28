@@ -11,12 +11,15 @@ attr_reader :pub_name, :till, :customers, :drinks
 
   def sell_drink(customer,drink)
 
-    if @drinks.include?(drink) && customer.afford_drink(drink)
+    if @drinks.include?(drink) && customer.afford_drink(drink) && check_id(customer)
       @drinks.delete(drink)
       @till += drink.price
       customer.buy_drink(drink)
     end
   end
 
+  def check_id(customer)
+    return customer.age > 18
+  end
 
 end
