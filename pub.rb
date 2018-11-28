@@ -14,6 +14,7 @@ attr_reader :pub_name, :till, :customers, :drinks
     if @drinks.include?(drink) && customer.afford_drink(drink) && check_id(customer)
       @drinks.delete(drink)
       @till += drink.price
+      customer.get_drunker(drink)
       customer.buy_drink(drink)
     end
   end

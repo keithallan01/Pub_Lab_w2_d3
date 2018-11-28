@@ -13,9 +13,9 @@ class PubTest < Minitest::Test
     @customer4 = Customer.new("Juan", 25, 16)
     @customers =[@customer1, @customer2, @customer3]
 
-    @drink1 = Drink.new("Tennents Lager", 2)
-    @drink2 = Drink.new("Red Wine", 3)
-    @drink3 = Drink.new("Mojito", 5)
+    @drink1 = Drink.new("Tennents Lager", 2, 4)
+    @drink2 = Drink.new("Red Wine", 3, 5)
+    @drink3 = Drink.new("Mojito", 5, 6)
     @drinks = [@drink1,@drink2,@drink3]
 
 
@@ -86,5 +86,9 @@ class PubTest < Minitest::Test
   def test_sell_underager_drink
     @pub.sell_drink(@customer4, @drink1)
     assert_equal(25, @customer4.wallet)
+  end
+
+  def test_sell_drink__drunkenness_increases
+    assert_equal(4, @customer1.drunkenness)
   end
 end

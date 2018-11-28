@@ -24,22 +24,31 @@ class CustomerTest < Minitest::Test
   end
 
   def test_buy_drink
-    @drink1 = Drink.new("Tennents Lager", 2)
+    @drink1 = Drink.new("Tennents Lager", 2, 4)
     assert_equal(48, @customer1.buy_drink(@drink1))
   end
 
   def test_customer_can_afford_drink__true
-    @drink1 = Drink.new("Tennents Lager", 2)
+    @drink1 = Drink.new("Tennents Lager", 2, 4)
     assert_equal(true, @customer1.afford_drink(@drink1))
   end
 
   def test_customer_can_afford_drink__false
-    @drink1 = Drink.new("Tennents Lager", 2)
+    @drink1 = Drink.new("Tennents Lager", 2, 4)
     assert_equal(false, @customer3.afford_drink(@drink1))
   end
 
   def test_customer_has_age
     assert_equal(31, @customer1.age)
+  end
+
+  def test_customer_drunkenness
+    assert_equal(0, @customer1.drunkenness)
+  end
+
+  def test_get_drunker
+    @drink1 = Drink.new("Tennents Lager", 2, 4)
+    assert_equal(4, @customer1.get_drunker(@drink1))
   end
 
 end
