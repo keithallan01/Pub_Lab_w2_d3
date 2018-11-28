@@ -16,4 +16,8 @@ class Customer
     reduce_wallet(desired_drink.price)
   end
 
+  def afford_drink(drink)
+    return drink.price < @wallet   
+  end
+
 end

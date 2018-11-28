@@ -10,9 +10,13 @@ attr_reader :pub_name, :till, :customers, :drinks
   end
 
   def sell_drink(customer,drink)
-    @drinks.delete(drink)
-    @till += drink.price
-    customer.buy_drink(drink)
-    
+
+    if @drinks.include?(drink) && customer.afford_drink(drink)
+      @drinks.delete(drink)
+      @till += drink.price
+      customer.buy_drink(drink)
+    end
   end
+
+
 end
